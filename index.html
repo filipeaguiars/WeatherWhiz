@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WeatherWhiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>WeatherWhiz</h1>
+
+    <div class="search-box" id="form">
+      <input type="search" id="search" class="search" placeholder="Enter your location" />
+      <button type="submit" class="submit fa-solid fa-search"></button>
+    </div>
+
+    <div class="notfound">
+      <img src="./assets/images/notfound.jpg" alt="not found">
+      <p>Oh no!Invalid location.</p>
+    </div>
+
+    <div id="resultado" class="weather">
+      <p class="temperature"></p>
+      <p class="description"></p>
+    </div>
+
+    <div class="weather-details">
+      <div class="humidity">
+        <i class="fa-solid fa-water"></i>
+        <span></span>
+        <p>Humidty</p>
+      </div>
+      <div class="wind">
+        <i class="fa-solid fa-wind"></i>
+        <span></span>
+        <p>Wind Speed</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://kit.fontawesome.com/0d55afc2db.js" crossorigin="anonymous"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

@@ -16,7 +16,7 @@ body{
 
 .container{
     position: relative;
-    width: 400px;
+    width: 500px;
     height: 150px;
     background: white;
     padding: 28px 32px;
@@ -24,6 +24,10 @@ body{
     border-radius: 18px;
     font-family: 'Roboto' sans-serif;
     transition: 0.6s ease-out;
+}
+
+.container h1{
+    text-align: center;
 }
 
 .search-box{
@@ -183,3 +187,4 @@ body{
     scale: 0;
     opacity: 0;
 }
+

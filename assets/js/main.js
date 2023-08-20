@@ -1,6 +1,6 @@
 //import axios from 'axios';
 
-let cityName = document.querySelector('.search');
+let cityInput = document.querySelector('.search');
 const sendBtn = document.querySelector('.submit');
 let container = document.querySelector('.container')
 let result = document.getElementById('resultado');
@@ -12,35 +12,47 @@ let weatherBox = document.querySelector('.weather');
 let weatherDetails = document.querySelector('.weather-details');
 const error = document.querySelector('.notfound');
 
-sendBtn.addEventListener('click', function(e){
-    if(!cityName.value) return;
-    console.log(cityName.value);
+    cityInput.addEventListener('keypress', function(e){
+        let cityName = cityInput.value;
+        if(e.keyCode === 13){
+        fetchDataFromApi(cityName);
+    }
+})
+
+
+    sendBtn.addEventListener('click', function(e){
+        if(!cityInput.value) return;
+
+        let cityName = cityInput.value;
+
+        fetchDataFromApi(cityName);        
+    })
+
+function fetchDataFromApi(cityName){
 
     const apiKey = 'c883f0ef28f441c867b5f69c2143e996';
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.value}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
 
     fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            if(json.cod === '404'){
-                container.style.height = '500px';
-                error.style.display = 'block';
-                error.classList.add('fadeIn');
-                return;
-            }
-            error.style.display = 'none';
-            error.classList.remove('fadeIn');
-            showForecast(json);
-        })
-        .catch(e => {
-            if (e.response) {
-                console.log(`Error: ${e.response.data.cod}. ${e.response.data.message}`);
-            }
-        });
-    
-})
-
+    .then(response => response.json())
+    .then(json => {
+        if(json.cod === '404'){
+            container.style.height = '500px';
+            error.style.display = 'block';
+            error.classList.add('fadeIn');
+            return;
+        }
+        error.style.display = 'none';
+        error.classList.remove('fadeIn');
+        showForecast(json);
+    })
+    .catch(e => {
+        if (e.response) {
+            console.log(`Error: ${e.response.data.cod}. ${e.response.data.message}`);
+        }
+    });
+}
 
 function showForecast(json) {
     console.log(json);
@@ -55,8 +67,8 @@ function showForecast(json) {
     
     temperature.innerText = json.main.temp + ' °C ';
     description.innerText = json.weather[0].description;
-    humidity.innerText = json.main.humidity;
-    wind.innerText = json.wind.speed + 'km/h ';
+    humidity.innerText = json.main.humidity + '%';
+    wind.innerText = json.wind.speed + 'km/h';
     
 }
 

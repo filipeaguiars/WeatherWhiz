@@ -14,16 +14,19 @@ const error = document.querySelector('.notfound');
 
     cityInput.addEventListener('keypress', function(e){
         let cityName = cityInput.value;
-        if(e.keyCode === 13){
+        if(!cityName){
+            return
+        }
+        else if(e.keyCode === 13){
         fetchDataFromApi(cityName);
     }
 })
 
 
     sendBtn.addEventListener('click', function(e){
-        if(!cityInput.value) return;
-
         let cityName = cityInput.value;
+
+        if(!cityName) return;
 
         fetchDataFromApi(cityName);        
     })

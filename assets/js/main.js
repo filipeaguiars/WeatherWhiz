@@ -23,7 +23,7 @@ const error = document.querySelector('.notfound');
 })
 
 
-    sendBtn.addEventListener('click', function(e){
+    sendBtn.addEventListener('click', function(){
         let cityName = cityInput.value;
 
         if(!cityName) return;
@@ -58,8 +58,6 @@ function fetchDataFromApi(cityName){
 }
 
 function showForecast(json) {
-    console.log(json);
-    cleanResults();
     search.value = '';
     search.placeholder = `${json.name}, ${json.sys.country}`;
     container.style.height = '450px';
@@ -73,10 +71,4 @@ function showForecast(json) {
     humidity.innerText = json.main.humidity + '%';
     wind.innerText = json.wind.speed + 'km/h';
     
-}
-
-function cleanResults(){
-    weatherBox.classList.remove('fadeIn');
-    weatherDetails.classList.remove('fadeIn');
-    container.style.height = '150px';
 }
